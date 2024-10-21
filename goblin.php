@@ -46,7 +46,7 @@
         button:hover, input[type="submit"]:hover {
             background-color: #d32f2f;
         }
-        input[type="text"] {
+        input[type="text"], input[type="radio"] {
             padding: 10px;
             border-radius: 5px;
             border: none;
@@ -64,13 +64,15 @@
                 private $name;
                 private $title;
                 private $classJeers = [];
+                private $cityResponses = [];
                 private $image;
 
                 // Constructor method to set the goblin's name, title, jeers, and image
-                public function __construct($name, $title, $jeers, $image) {
+                public function __construct($name, $title, $jeers, $cityResponses, $image) {
                     $this->name = $name;
                     $this->title = $title;
                     $this->classJeers = $jeers;
+                    $this->cityResponses = $cityResponses;
                     $this->image = $image;
                 }
 
@@ -84,6 +86,11 @@
                     }
                 }
 
+                // Method to display the goblin's response to being new in the city
+                public function cityResponse($isNew) {
+                    return $isNew ? $this->cityResponses['new'] : $this->cityResponses['not_new'];
+                }
+
                 // Method to display the goblin's name and title
                 public function introduce() {
                     return "{$this->name}, {$this->title}, says:";
@@ -95,7 +102,7 @@
                 }
             }
 
-            // Jeers for multiple goblins
+            // Jeers and responses for multiple goblins
             $grubbogJeers = [
                 "wizard" => "yer spells be weaker than a gnome’s sneeze!",
                 "fighter" => "ye're just swingin’ that sword like a toddler!",
@@ -144,11 +151,32 @@
                 "druid" => "Pfft, go hug a tree and leave the fightin’ to us!"
             ];
 
-            // Create multiple goblin objects with images
-            $goblin1 = new Goblin("Grubbog the Snickerer", "Master of Insults and Sticky Fingers", $grubbogJeers, "images/goblin3.png");
-            $goblin2 = new Goblin("Snaggles the Cackler", "Chief of Mischief and Mockery", $snagglesJeers, "images/goblin2.png");
-            $goblin3 = new Goblin("Brizzle the Sharp-Tongued", "Mistress of Scorn and Snark", $brizzleJeers, "images/goblin1.png");
-            $goblin4 = new Goblin("Gnash the Grumbler", "Lord of Gripes and Grumbles", $gnashJeers, "images/goblin4.png");
+            // City response options
+            $cityResponsesGrubbog = [
+                "new" => "Ah, so ye're fresh to the city, eh? Watch out, the rats here are bigger than you!",
+                "not_new" => "Oh, so ye're a regular here? Could’ve fooled me with that face!"
+            ];
+
+            $cityResponsesSnaggles = [
+                "new" => "New to the city? Ye’ll be lucky if ye last a week!",
+                "not_new" => "Been here a while, eh? Then why do ye still look so lost?"
+            ];
+
+            $cityResponsesBrizzle = [
+                "new" => "New in town? Ha! Bet ye got lost findin' the entrance!",
+                "not_new" => "Not new, huh? Then stop actin' like a tourist!"
+            ];
+
+            $cityResponsesGnash = [
+                "new" => "New, eh? Well, don’t worry, the city’s terrible, ye’ll hate it.",
+                "not_new" => "Oh, ye've been here before? That explains the smell."
+            ];
+
+            // Create multiple goblin objects with images and city responses
+            $goblin1 = new Goblin("Grubbog the Snickerer", "Master of Insults and Sticky Fingers", $grubbogJeers, $cityResponsesGrubbog, "images/goblin1.png");
+            $goblin2 = new Goblin("Snaggles the Cackler", "Chief of Mischief and Mockery", $snagglesJeers, $cityResponsesSnaggles, "images/goblin2.png");
+            $goblin3 = new Goblin("Brizzle the Sharp-Tongued", "Mistress of Scorn and Snark", $brizzleJeers, $cityResponsesBrizzle, "images/goblin3.png");
+            $goblin4 = new Goblin("Gnash the Grumbler", "Lord of Gripes and Grumbles", $gnashJeers, $cityResponsesGnash, "images/goblin4.png");
 
             // Create an array of goblins
             $goblins = [$goblin1, $goblin2, $goblin3, $goblin4];
@@ -158,35 +186,46 @@
                 $userClass = $_POST["class"];
                 $characterName = $_POST["character_name"];
 
-                // Randomly select two goblins to respond
-                shuffle($goblins);
-                $selectedGoblins = array_slice($goblins, 0, 2);
+                // Check if the user has answered the second question
+                if (isset($_POST["is_new"])) {
+                    $isNew = $_POST["is_new"] === "yes";
 
-                // Display the selected goblins' personalized jeers and their images
-                foreach ($selectedGoblins as $goblin) {
-                    echo "<div class='goblin-response'>";
-                    echo "<img src='" . $goblin->getImage() . "' alt='" . $goblin->introduce() . "' class='goblin-image'>";
-                    echo "<div>";
-                    echo "<p><strong>" . $goblin->introduce() . "</strong></p>";
-                    echo "<p><em>\"" . $goblin->jeer($userClass, $characterName) . "\"</em></p>";
-                    echo "</div>";
-                    echo "</div>";
+                    // Randomly select two goblins to respond
+                    shuffle($goblins);
+                    $selectedGoblins = array_slice($goblins, 0, 2);
+
+                    // Display the selected goblins' city responses and their images
+                    foreach ($selectedGoblins as $goblin) {
+                        echo "<div class='goblin-response'>";
+                        echo "<img src='" . $goblin->getImage() . "' alt='" . $goblin->introduce() . "' class='goblin-image'>";
+                        echo "<div>";
+                        echo "<p><strong>" . $goblin->introduce() . "</strong></p>";
+                        echo "<p><em>\"" . $goblin->cityResponse($isNew) . "\"</em></p>";
+                        echo "</div>";
+                        echo "</div>";
+                    }
+                } else {
+                    // Ask the second question
+                    echo "<form method='post' action=''>";
+                    echo "<input type='hidden' name='class' value='" . htmlspecialchars($userClass) . "'>";
+                    echo "<input type='hidden' name='character_name' value='" . htmlspecialchars($characterName) . "'>";
+                    echo "<p>Are ye new to the city?</p>";
+                    echo "<label><input type='radio' name='is_new' value='yes' required> Yes</label>";
+                    echo "<label><input type='radio' name='is_new' value='no'> No</label><br><br>";
+                    echo "<input type='submit' value='Answer'>";
+                    echo "</form>";
                 }
             } else {
-                // Display a prompt for the user to enter their class and name
-                echo "<p><strong>" . $goblin1->introduce() . "</strong></p>";
-                echo "<p><em>\"Tell me what ye are, and I'll tell ye why ye're terrible at it!\"</em></p>";
+                // Display the first form to ask for class and name
+                echo "<form method='post' action=''>";
+                echo "<label for='character_name'>What’s yer name, adventurer?</label><br><br>";
+                echo "<input type='text' id='character_name' name='character_name' placeholder='e.g., Aragon' required><br><br>";
+                echo "<label for='class'>What’s yer class?</label><br><br>";
+                echo "<input type='text' id='class' name='class' placeholder='e.g., wizard, fighter' required><br><br>";
+                echo "<input type='submit' value='Get Jeered'>";
+                echo "</form>";
             }
         ?>
     </div>
-
-    <!-- Input form for the user to enter their class and character name -->
-    <form method="post" action="">
-        <label for="character_name">What’s yer name, adventurer?</label><br><br>
-        <input type="text" id="character_name" name="character_name" placeholder="e.g., Aragon" required><br><br>
-        <label for="class">What’s yer class?</label><br><br>
-        <input type="text" id="class" name="class" placeholder="e.g., wizard, fighter" required><br><br>
-        <input type="submit" value="Get Jeered">
-    </form>
 </body>
 </html>
