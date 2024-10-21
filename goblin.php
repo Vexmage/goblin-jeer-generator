@@ -19,6 +19,18 @@
             display: inline-block;
             max-width: 600px;
         }
+        .goblin-response {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 20px;
+        }
+        .goblin-image {
+            width: 100px;
+            height: 100px;
+            margin-right: 20px;
+            border-radius: 10px;
+        }
         h1 {
             color: #f44336;
         }
@@ -52,21 +64,23 @@
                 private $name;
                 private $title;
                 private $classJeers = [];
+                private $image;
 
-                // Constructor method to set the goblin's name, title, and jeers
-                public function __construct($name, $title, $jeers) {
+                // Constructor method to set the goblin's name, title, jeers, and image
+                public function __construct($name, $title, $jeers, $image) {
                     $this->name = $name;
                     $this->title = $title;
                     $this->classJeers = $jeers;
+                    $this->image = $image;
                 }
 
-                // Method to deliver a jeer based on the class
-                public function jeer($userClass) {
+                // Method to deliver a jeer based on the class and character name
+                public function jeer($userClass, $characterName) {
                     $userClass = strtolower(trim($userClass)); // Sanitize input
                     if (array_key_exists($userClass, $this->classJeers)) {
-                        return $this->classJeers[$userClass];
+                        return $characterName . ", " . $this->classJeers[$userClass];
                     } else {
-                        return "Never heard of that class! Ye sure yer not just a chicken in disguise?";
+                        return $characterName . ", never heard of that class! Ye sure yer not just a chicken in disguise?";
                     }
                 }
 
@@ -74,91 +88,103 @@
                 public function introduce() {
                     return "{$this->name}, {$this->title}, says:";
                 }
+
+                // Method to get the goblin's image path
+                public function getImage() {
+                    return $this->image;
+                }
             }
 
             // Jeers for multiple goblins
             $grubbogJeers = [
-                "wizard" => "So ye're a wizard? Couldn't tell! Yer spells be weaker than a gnome’s sneeze!",
-                "fighter" => "Oh, ye're a fighter? I thought ye were just swingin’ that sword like a toddler!",
-                "rogue" => "A rogue, eh? I've seen kobolds sneak better than ye!",
-                "bard" => "Bard, eh? Hope yer better at singin' than ye are at fightin'!",
-                "cleric" => "Cleric, eh? Ye’ll need more than prayers to save yerself from me!",
-                "ranger" => "A ranger, eh? Couldn’t track a snail in a puddle, could ya?",
-                "paladin" => "A paladin, huh? Yer about as noble as a rat in a cheese shop!",
-                "sorcerer" => "Sorcerer, eh? Is that magic or are ye just wavin’ yer hands about?",
-                "druid" => "Druid, eh? Talk to the trees, do ya? Bet they tell ye to quit adventurin'!"
+                "wizard" => "yer spells be weaker than a gnome’s sneeze!",
+                "fighter" => "ye're just swingin’ that sword like a toddler!",
+                "rogue" => "I've seen kobolds sneak better than ye!",
+                "bard" => "Hope yer better at singin' than ye are at fightin'!",
+                "cleric" => "Ye’ll need more than prayers to save yerself from me!",
+                "ranger" => "Couldn’t track a snail in a puddle, could ya?",
+                "paladin" => "Yer about as noble as a rat in a cheese shop!",
+                "sorcerer" => "Is that magic or are ye just wavin’ yer hands about?",
+                "druid" => "Talk to the trees, do ya? Bet they tell ye to quit adventurin'!"
             ];
 
             $snagglesJeers = [
-                "wizard" => "A wizard, eh? I've seen goblin fireworks more powerful than yer spells!",
-                "fighter" => "A fighter? More like a flailer! Ye couldn’t swing yer way out of a tavern brawl!",
-                "rogue" => "Ye call yerself a rogue? Ye look more like a lost puppy than a shadowy thief!",
-                "bard" => "A bard? Sing us a song, then, but not while I’m tryin’ to eat, eh?",
-                "cleric" => "Cleric, eh? Pray all ye want, it won’t save ya from me blade!",
-                "ranger" => "A ranger! Can ye even hit the broadside of a dragon with that bow?",
-                "paladin" => "Paladin? What’s that shiny armor for, eh? To blind yer enemies?",
-                "sorcerer" => "Sorcerer? Bah! Yer magic’s weaker than a goblin's stew!",
-                "druid" => "Druid? I bet the trees cry whenever they see ya comin’!"
+                "wizard" => "I've seen goblin fireworks more powerful than yer spells!",
+                "fighter" => "More like a flailer! Ye couldn’t swing yer way out of a tavern brawl!",
+                "rogue" => "Ye look more like a lost puppy than a shadowy thief!",
+                "bard" => "Sing us a song, then, but not while I’m tryin’ to eat, eh?",
+                "cleric" => "Pray all ye want, it won’t save ya from me blade!",
+                "ranger" => "Can ye even hit the broadside of a dragon with that bow?",
+                "paladin" => "What’s that shiny armor for, eh? To blind yer enemies?",
+                "sorcerer" => "Yer magic’s weaker than a goblin's stew!",
+                "druid" => "I bet the trees cry whenever they see ya comin’!"
             ];
 
             $brizzleJeers = [
-                "wizard" => "Yer spells couldn't light a candle, let alone a fireball! Weak!",
-                "fighter" => "Fighter? Ha! Ye look like ye're fightin' with one arm tied behind yer back!",
-                "rogue" => "Sneaky, eh? More like stinky! I could smell ye a mile away!",
-                "bard" => "A bard! Hope yer singin’s better than yer fightin’, or we’re all doomed!",
-                "cleric" => "Cleric, eh? Try prayin’ fer a better shield next time ye get hit!",
-                "ranger" => "A ranger, huh? Bet ye couldn't hit a troll if it were standin’ right in front of ye!",
-                "paladin" => "Paladin? With armor that shiny, ye’re just askin' to get hit!",
-                "sorcerer" => "A sorcerer, eh? Ye cast spells like a goblin casts rocks... badly.",
-                "druid" => "Druid? Let me guess, ye talk to squirrels and call it magic, har har!"
+                "wizard" => "Yer spells couldn't light a candle, let alone a fireball!",
+                "fighter" => "Ye look like ye're fightin' with one arm tied behind yer back!",
+                "rogue" => "I could smell ye a mile away!",
+                "bard" => "Hope yer singin’s better than yer fightin’, or we’re doomed!",
+                "cleric" => "Prayin’ fer a better shield next time ye get hit!",
+                "ranger" => "Bet ye couldn't hit a troll if it were standin’ right in front of ye!",
+                "paladin" => "With armor that shiny, ye’re just askin' to get hit!",
+                "sorcerer" => "Ye cast spells like a goblin casts rocks... badly.",
+                "druid" => "Let me guess, ye talk to squirrels and call it magic!"
             ];
 
             $gnashJeers = [
-                "wizard" => "A wizard, huh? My granny casts better spells and she's a goblin!",
-                "fighter" => "Fighter? I've seen better swings from a goblin throwin' mud!",
-                "rogue" => "Ye’re a rogue? More like a rogue that forgot how to sneak!",
-                "bard" => "A bard? Please don’t sing... my ears couldn’t handle it!",
-                "cleric" => "A cleric? Better heal yerself after that pathetic display!",
-                "ranger" => "A ranger? Ye couldn’t track yer own footsteps!",
-                "paladin" => "Paladin, huh? Ye’re more about showin’ off than fightin’!",
-                "sorcerer" => "Sorcerer, eh? Ye better practice those spells or ye’ll be toast!",
-                "druid" => "Druid? Pfft, go hug a tree and leave the fightin’ to the rest of us!"
+                "wizard" => "My granny casts better spells and she's a goblin!",
+                "fighter" => "I've seen better swings from a goblin throwin' mud!",
+                "rogue" => "More like a rogue that forgot how to sneak!",
+                "bard" => "Please don’t sing... my ears couldn’t handle it!",
+                "cleric" => "Better heal yerself after that pathetic display!",
+                "ranger" => "Ye couldn’t track yer own footsteps!",
+                "paladin" => "Ye’re more about showin’ off than fightin’!",
+                "sorcerer" => "Ye better practice those spells or ye’ll be toast!",
+                "druid" => "Pfft, go hug a tree and leave the fightin’ to us!"
             ];
 
-            // Create multiple goblin objects
-            $goblin1 = new Goblin("Grubbog the Snickerer", "Master of Insults and Sticky Fingers", $grubbogJeers);
-            $goblin2 = new Goblin("Snaggles the Cackler", "Chief of Mischief and Mockery", $snagglesJeers);
-            $goblin3 = new Goblin("Brizzle the Sharp-Tongued", "Mistress of Scorn and Snark", $brizzleJeers);
-            $goblin4 = new Goblin("Gnash the Grumbler", "Lord of Gripes and Grumbles", $gnashJeers);
+            // Create multiple goblin objects with images
+            $goblin1 = new Goblin("Grubbog the Snickerer", "Master of Insults and Sticky Fingers", $grubbogJeers, "images/goblin3.png");
+            $goblin2 = new Goblin("Snaggles the Cackler", "Chief of Mischief and Mockery", $snagglesJeers, "images/goblin2.png");
+            $goblin3 = new Goblin("Brizzle the Sharp-Tongued", "Mistress of Scorn and Snark", $brizzleJeers, "images/goblin1.png");
+            $goblin4 = new Goblin("Gnash the Grumbler", "Lord of Gripes and Grumbles", $gnashJeers, "images/goblin4.png");
+
+            // Create an array of goblins
+            $goblins = [$goblin1, $goblin2, $goblin3, $goblin4];
 
             // Check if the form has been submitted
-            if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["class"])) {
+            if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["class"]) && isset($_POST["character_name"])) {
                 $userClass = $_POST["class"];
+                $characterName = $_POST["character_name"];
 
-                // Display each goblin's personalized jeer
-                echo "<p><strong>" . $goblin1->introduce() . "</strong></p>";
-                echo "<p><em>\"" . $goblin1->jeer($userClass) . "\"</em></p>";
+                // Randomly select two goblins to respond
+                shuffle($goblins);
+                $selectedGoblins = array_slice($goblins, 0, 2);
 
-                echo "<p><strong>" . $goblin2->introduce() . "</strong></p>";
-                echo "<p><em>\"" . $goblin2->jeer($userClass) . "\"</em></p>";
-
-                echo "<p><strong>" . $goblin3->introduce() . "</strong></p>";
-                echo "<p><em>\"" . $goblin3->jeer($userClass) . "\"</em></p>";
-
-                echo "<p><strong>" . $goblin4->introduce() . "</strong></p>";
-                echo "<p><em>\"" . $goblin4->jeer($userClass) . "\"</em></p>";
+                // Display the selected goblins' personalized jeers and their images
+                foreach ($selectedGoblins as $goblin) {
+                    echo "<div class='goblin-response'>";
+                    echo "<img src='" . $goblin->getImage() . "' alt='" . $goblin->introduce() . "' class='goblin-image'>";
+                    echo "<div>";
+                    echo "<p><strong>" . $goblin->introduce() . "</strong></p>";
+                    echo "<p><em>\"" . $goblin->jeer($userClass, $characterName) . "\"</em></p>";
+                    echo "</div>";
+                    echo "</div>";
+                }
             } else {
-                // Display a prompt for the user to enter their class
+                // Display a prompt for the user to enter their class and name
                 echo "<p><strong>" . $goblin1->introduce() . "</strong></p>";
-                echo "<p><em>\"Tell me what ye are, and I'll tell ye why ye're terrible at it!\"</em></p>";
                 echo "<p><em>\"Tell me what ye are, and I'll tell ye why ye're terrible at it!\"</em></p>";
             }
         ?>
     </div>
 
-    <!-- Input form for the user to enter their class -->
+    <!-- Input form for the user to enter their class and character name -->
     <form method="post" action="">
-        <label for="class">What’s yer class, adventurer?</label><br><br>
+        <label for="character_name">What’s yer name, adventurer?</label><br><br>
+        <input type="text" id="character_name" name="character_name" placeholder="e.g., Aragon" required><br><br>
+        <label for="class">What’s yer class?</label><br><br>
         <input type="text" id="class" name="class" placeholder="e.g., wizard, fighter" required><br><br>
         <input type="submit" value="Get Jeered">
     </form>
