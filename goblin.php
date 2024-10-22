@@ -4,13 +4,15 @@ class Goblin {
     private $title;
     private $classJeers = [];
     private $cityResponses = [];
+    private $locationJeers = [];
     private $image;
 
-    public function __construct($name, $title, $jeers, $cityResponses, $image) {
+    public function __construct($name, $title, $classJeers, $cityResponses, $locationJeers, $image) {
         $this->name = $name;
         $this->title = $title;
-        $this->classJeers = $jeers;
+        $this->classJeers = $classJeers;
         $this->cityResponses = $cityResponses;
+        $this->locationJeers = $locationJeers;
         $this->image = $image;
     }
 
@@ -27,6 +29,18 @@ class Goblin {
     // Method to display the goblin's response to being new in the city
     public function cityResponse($isNew) {
         return $isNew ? $this->cityResponses['new'] : $this->cityResponses['not_new'];
+    }
+
+    // Method to deliver location-based jeers
+    public function locationJeers($locations) {
+        $jeer = "Oh, ye want to know where these places are, eh? Let me tell ye...";
+        foreach ($locations as $location) {
+            // Check if the location exists in the goblin's locationJeers array
+            if (array_key_exists($location, $this->locationJeers)) {
+                $jeer .= " " . $this->locationJeers[$location];
+            }
+        }
+        return $jeer;
     }
 
     // Method to display the goblin's name and title

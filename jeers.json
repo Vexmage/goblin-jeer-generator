@@ -3,43 +3,100 @@
       "classJeers": {
         "wizard": "yer spells be weaker than a gnome’s sneeze!",
         "fighter": "ye're just swingin’ that sword like a toddler!",
-        "rogue": "I've seen kobolds sneak better than ye!"
+        "rogue": "I've seen kobolds sneak better than ye!",
+        "bard": "Hope yer better at singin' than ye are at fightin'!",
+        "cleric": "Ye’ll need more than prayers to save yerself from me!",
+        "ranger": "Couldn’t track a snail in a puddle, could ya?",
+        "paladin": "Yer about as noble as a rat in a cheese shop!",
+        "sorcerer": "Is that magic or are ye just wavin’ yer hands about?",
+        "druid": "Talk to the trees, do ya? Bet they tell ye to quit adventurin'!"
       },
       "cityResponses": {
         "new": "Ah, so ye're fresh to the city, eh? Watch out, the rats here are bigger than you!",
-        "not_new": "Oh, so ye're a regular here? Could’ve fooled me with that face!"
+        "not_new": "Oh, so ye've been here before? Couldn’t tell from the way yer stumbling around!"
+      },
+      "locationJeers": {
+        "weapon_shop": "The weapon shop? More like the place ye'll get swindled into buyin’ rusty daggers!",
+        "magic_shop": "Magic shop? Ha! The only magic there is how they make yer gold disappear!",
+        "courthouse": "The courthouse? Hope ye like bein' laughed at by a judge!",
+        "temple": "The temple? What, ye think a prayer's gonna fix yer awful fightin' skills?",
+        "inn": "The inn? A fine place if ye like bedbugs and thieves!",
+        "tavern": "The tavern? Ah, yes. The only place worse than yer fightin' is their ale!"
       }
     },
     "Snaggles": {
       "classJeers": {
         "wizard": "I've seen goblin fireworks more powerful than yer spells!",
-        "fighter": "More like a flailer! Ye couldn’t swing yer way out of a tavern brawl!"
+        "fighter": "More like a flailer! Ye couldn’t swing yer way out of a tavern brawl!",
+        "rogue": "Ye look more like a lost puppy than a shadowy thief!",
+        "bard": "Sing us a song, then, but not while I’m tryin’ to eat, eh?",
+        "cleric": "Pray all ye want, it won’t save ya from me blade!",
+        "ranger": "Can ye even hit the broadside of a dragon with that bow?",
+        "paladin": "What’s that shiny armor for, eh? To blind yer enemies?",
+        "sorcerer": "Yer magic’s weaker than a goblin's stew!",
+        "druid": "I bet the trees cry whenever they see ya comin’!"
       },
       "cityResponses": {
-        "new": "New to the city? Ye’ll be lucky if ye last a week!",
-        "not_new": "Been here a while, eh? Then why do ye still look so lost?"
+        "new": "New to the city? Ye’ll be lucky if ye last a week! Goblins love fresh meat, after all!",
+        "not_new": "So ye think ye know the city? Then why do ye still look like a lost hatchling?"
+      },
+      "locationJeers": {
+        "weapon_shop": "The weapon shop? Ye’ll find more danger buyin’ a sword there than usin' it!",
+        "magic_shop": "Magic shop? More like a shop of cheap tricks and even cheaper potions!",
+        "courthouse": "Court? Oh, ye'll fit right in—everyone's a fool in there!",
+        "temple": "Temple? Pfft, ye’ll need a miracle just to find the place!",
+        "inn": "The inn? Might as well sleep in the stables—at least the rats are friendlier!",
+        "tavern": "The tavern? Ah, I’d avoid their stew... unless ye like drinkin' mud!"
       }
     },
     "Brizzle": {
       "classJeers": {
         "wizard": "Yer spells couldn't light a candle, let alone a fireball!",
         "fighter": "Ye look like ye're fightin' with one arm tied behind yer back!",
-        "rogue": "I could smell ye a mile away!"
+        "rogue": "I could smell ye a mile away!",
+        "bard": "Hope yer singin’s better than yer fightin’, or we’re doomed!",
+        "cleric": "Prayin’ fer a better shield next time ye get hit!",
+        "ranger": "Bet ye couldn't hit a troll if it were standin’ right in front of ye!",
+        "paladin": "With armor that shiny, ye’re just askin' to get hit!",
+        "sorcerer": "Ye cast spells like a goblin casts rocks... badly.",
+        "druid": "Let me guess, ye talk to squirrels and call it magic!"
       },
       "cityResponses": {
-        "new": "New in town? Ha! Bet ye got lost findin' the entrance!",
-        "not_new": "Not new, huh? Then stop actin' like a tourist!"
+        "new": "New in town? Ha! Bet ye got lost findin' the entrance. The gates are big, ye know!",
+        "not_new": "Not new? Then why do ye still look like ye belong in a dung heap?"
+      },
+      "locationJeers": {
+        "weapon_shop": "The weapon shop? Bah! The blacksmith's blind as a bat!",
+        "magic_shop": "Magic shop? Ye mean that shady corner shop that sells fake amulets?",
+        "courthouse": "The courthouse? Ye’ll wish ye never walked through those doors!",
+        "temple": "The temple? Maybe they can heal that terrible fightin’ style of yers!",
+        "inn": "The inn? Hope ye enjoy a lumpy bed and even lumpier soup!",
+        "tavern": "The tavern? Hah! Their ale’s as watered down as yer spells!"
       }
     },
     "Gnash": {
       "classJeers": {
         "wizard": "My granny casts better spells and she's a goblin!",
         "fighter": "I've seen better swings from a goblin throwin' mud!",
-        "rogue": "More like a rogue that forgot how to sneak!"
+        "rogue": "More like a rogue that forgot how to sneak!",
+        "bard": "Please don’t sing... my ears couldn’t handle it!",
+        "cleric": "Better heal yerself after that pathetic display!",
+        "ranger": "Ye couldn’t track yer own footsteps!",
+        "paladin": "Ye’re more about showin’ off than fightin’!",
+        "sorcerer": "Ye better practice those spells or ye’ll be toast!",
+        "druid": "Pfft, go hug a tree and leave the fightin’ to us!"
       },
       "cityResponses": {
-        "new": "New, eh? Well, don’t worry, the city’s terrible, ye’ll hate it.",
-        "not_new": "Oh, ye've been here before? That explains the smell."
+        "new": "New, eh? Well, don’t worry, the city’s terrible, ye’ll hate it. I sure do!",
+        "not_new": "Oh, ye've been here before? Then ye already know how awful it is!"
+      },
+      "locationJeers": {
+        "weapon_shop": "Weapon shop? Bah! They charge ye double for half a blade!",
+        "magic_shop": "Magic shop? They sell nothin' but junk. Only magic ye'll get is buyer’s remorse!",
+        "courthouse": "The courthouse? Ye’ll leave poorer than when ye entered!",
+        "temple": "Temple? Might as well pray ye don’t get lost on yer way there!",
+        "inn": "The inn? Hope ye like yer stew with a side of cockroaches!",
+        "tavern": "The tavern? Their drinks taste like goblin sweat—and that’s on a good day!"
       }
     }
   }
