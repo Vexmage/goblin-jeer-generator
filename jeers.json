@@ -1,0 +1,46 @@
+{
+    "Grubbog": {
+      "classJeers": {
+        "wizard": "yer spells be weaker than a gnome’s sneeze!",
+        "fighter": "ye're just swingin’ that sword like a toddler!",
+        "rogue": "I've seen kobolds sneak better than ye!"
+      },
+      "cityResponses": {
+        "new": "Ah, so ye're fresh to the city, eh? Watch out, the rats here are bigger than you!",
+        "not_new": "Oh, so ye're a regular here? Could’ve fooled me with that face!"
+      }
+    },
+    "Snaggles": {
+      "classJeers": {
+        "wizard": "I've seen goblin fireworks more powerful than yer spells!",
+        "fighter": "More like a flailer! Ye couldn’t swing yer way out of a tavern brawl!"
+      },
+      "cityResponses": {
+        "new": "New to the city? Ye’ll be lucky if ye last a week!",
+        "not_new": "Been here a while, eh? Then why do ye still look so lost?"
+      }
+    },
+    "Brizzle": {
+      "classJeers": {
+        "wizard": "Yer spells couldn't light a candle, let alone a fireball!",
+        "fighter": "Ye look like ye're fightin' with one arm tied behind yer back!",
+        "rogue": "I could smell ye a mile away!"
+      },
+      "cityResponses": {
+        "new": "New in town? Ha! Bet ye got lost findin' the entrance!",
+        "not_new": "Not new, huh? Then stop actin' like a tourist!"
+      }
+    },
+    "Gnash": {
+      "classJeers": {
+        "wizard": "My granny casts better spells and she's a goblin!",
+        "fighter": "I've seen better swings from a goblin throwin' mud!",
+        "rogue": "More like a rogue that forgot how to sneak!"
+      },
+      "cityResponses": {
+        "new": "New, eh? Well, don’t worry, the city’s terrible, ye’ll hate it.",
+        "not_new": "Oh, ye've been here before? That explains the smell."
+      }
+    }
+  }
+  
