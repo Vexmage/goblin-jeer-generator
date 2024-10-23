@@ -15,6 +15,7 @@ function handleStages($goblins) {
         echo "<label for='class'>Class: </label>";
         echo "<input type='text' id='class' name='class' placeholder='e.g., wizard, fighter' required><br><br>";
         echo "<input type='submit' value='Get Jeered'>";
+        echo "<a href='goblinofday.php' class='button'>Goblin of the Day</a>";
         echo "</form>";
 
     // Stage 2: Display class-based jeers and ask if the player is new to the city

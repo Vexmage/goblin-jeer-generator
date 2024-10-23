@@ -34,7 +34,7 @@ h1 {
 
 button, input[type="submit"] {
     margin-top: 20px;
-    padding: 10px 20px;
+
     background-color: #f44336;
     color: white;
     border: none;
@@ -45,6 +45,35 @@ button, input[type="submit"] {
 button:hover, input[type="submit"]:hover {
     background-color: #d32f2f;
 }
+
+
+.button, input[type="submit"] {
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: #f44336;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    text-decoration: none;
+    display: inline-block;
+    text-align: center;
+    width: auto;
+    box-sizing: border-box;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+/* Add margin-right for the first button */
+input[type="submit"] {
+    margin-right: 10px; /* This adds space between "Get Jeered" and "Goblin of the Day" */
+}
+
+.button:hover, input[type="submit"]:hover {
+    background-color: #d32f2f;
+}
+
+
+
 
 input[type="text"], input[type="radio"] {
     padding: 10px;
