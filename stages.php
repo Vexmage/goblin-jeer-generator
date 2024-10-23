@@ -1,5 +1,8 @@
 <?php
-function handleStages($goblins) {
+
+include 'user_tracking.php'; // Include the user tracking logic
+
+function handleStages($goblins, $goblinsData) {
     // Ensure the current stage is initialized properly
     $stage = isset($_POST["stage"]) ? $_POST["stage"] : "1";
 
@@ -37,6 +40,9 @@ function handleStages($goblins) {
             echo "<p><em>\"" . $goblin->jeer($userClass, $characterName) . "\"</em></p>";
             echo "</div>";
             echo "</div>";
+
+            // Track goblin interaction
+            trackGoblinInteraction($goblin->getName());
         }
 
         // Proceed to the city question
@@ -70,6 +76,9 @@ function handleStages($goblins) {
             echo "<p><em>\"" . $goblin->cityResponse($isNew === 'yes') . "\"</em></p>";
             echo "</div>";
             echo "</div>";
+
+            // Track goblin interaction
+            trackGoblinInteraction($goblin->getName());
         }
 
         // Proceed to location-based questions
@@ -107,6 +116,9 @@ function handleStages($goblins) {
             echo "<p><em>\"" . $goblin->locationJeers($locations) . "\"</em></p>";
             echo "</div>";
             echo "</div>";
+
+            // Track goblin interaction
+            trackGoblinInteraction($goblin->getName());
         }
 
         // Provide a "Start Over" button
@@ -114,6 +126,17 @@ function handleStages($goblins) {
         echo "<input type='hidden' name='stage' value='1'>"; // Restart from stage 1
         echo "<input type='submit' value='Start Over'>";
         echo "</form>";
+
+        // Check for unlocked achievements
+        $unlockedAchievements = checkAchievements($goblinsData);
+
+        // Display achievements if any
+        if (!empty($unlockedAchievements)) {
+            echo "<h2>Achievements Unlocked:</h2>";
+            foreach ($unlockedAchievements as $achievement) {
+                echo "<p><strong>$achievement</strong></p>";
+            }
+        }
     }
 }
 ?>

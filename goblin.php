@@ -4,16 +4,21 @@ class Goblin {
     private $title;
     private $classJeers = [];
     private $cityResponses = [];
-    private $locationJeers = [];
+    private $locationJeers = []; // Ensure this is initialized as an array
     private $image;
 
-    public function __construct($name, $title, $classJeers, $cityResponses, $locationJeers, $image) {
+    public function __construct($name, $title, $jeers, $cityResponses, $locationJeers, $image) {
         $this->name = $name;
         $this->title = $title;
-        $this->classJeers = $classJeers;
+        $this->classJeers = $jeers;
         $this->cityResponses = $cityResponses;
-        $this->locationJeers = $locationJeers;
+        $this->locationJeers = $locationJeers; // Set location jeers from the JSON
         $this->image = $image;
+    }
+
+    // Method to get the goblin's name
+    public function getName() {
+        return $this->name;
     }
 
     // Method to deliver a jeer based on the class and character name
